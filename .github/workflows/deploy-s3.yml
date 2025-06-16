@@ -20,6 +20,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: List files to be uploaded
+        run: |
+          echo "Files to be uploaded:"
+          ls -la
+
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
@@ -27,7 +32,8 @@ jobs:
             --exclude ".github/*" \
             --exclude "README.md" \
             --exclude "*.yml" \
-            --delete
+            --delete \
+            --acl public-read
 
       - name: Invalidate CloudFront cache
         if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
