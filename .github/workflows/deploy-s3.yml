@@ -25,6 +25,15 @@ jobs:
           echo "Files to be uploaded:"
           ls -la
 
+      - name: Enable Static Website Hosting
+        run: |
+          aws s3api put-bucket-website \
+            --bucket ${{ secrets.S3_BUCKET }} \
+            --website-configuration '{
+              "IndexDocument": {"Suffix": "index.html"},
+              "ErrorDocument": {"Key": "error.html"}
+            }'
+
       - name: Deploy to S3
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
