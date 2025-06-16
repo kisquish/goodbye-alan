@@ -34,6 +34,21 @@ jobs:
             --exclude "*.yml" \
             --delete
 
+      - name: Set Bucket Policy for Public Access
+        run: |
+          aws s3api put-bucket-policy --bucket ${{ secrets.S3_BUCKET }} --policy '{
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "PublicReadGetObject",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::'${{ secrets.S3_BUCKET }}'/*"
+              }
+            ]
+          }'
+
       - name: Invalidate CloudFront cache
         run: |
           if [ -n "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" ]; then
