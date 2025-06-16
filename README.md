@@ -16,6 +16,12 @@ A memorial website for Alan Galwine NANKENG FOZON, hosted on AWS S3 and deployed
 - `error.html` - Custom 404 error page
 - `IMG_8427.jpeg` - Alan's photo
 
+### Technologies Used
+- HTML5
+- CSS3
+- AWS S3 for hosting
+- GitHub Actions for CI/CD
+
 ### Deployment
 The website is automatically deployed to AWS S3 using GitHub Actions. The deployment process:
 1. Uploads website files to S3
@@ -42,16 +48,21 @@ The following secrets need to be configured in GitHub repository settings:
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_REGION`
 - `S3_BUCKET`
-- `CLOUDFRONT_DISTRIBUTION_ID` (optional)
 
 ## Future Improvements
-- [ ] Add HTTPS support via CloudFront
 - [ ] Add custom domain support
 - [ ] Implement caching headers
 - [ ] Add analytics
+- [ ] Add responsive image optimization
+- [ ] Implement browser caching
+- [ ] Add security headers
+- [ ] Set up monitoring and alerts
 
 ## Contributing
 This is a memorial website. Please respect its purpose and maintain its dignity.
 
 ## License
-All rights reserved. 
+All rights reserved.
+
+## Contact
+For technical support or inquiries, please open an issue in this repository. 
